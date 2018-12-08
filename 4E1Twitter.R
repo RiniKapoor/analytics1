@@ -10,16 +10,17 @@ download.file(url="http://curl.haxx.se/ca/cacert.pem",destfile="cacert.pem")
 
 #https://apps.twitter.com/
 #different for each account
-consumerKey="uRDuync3BziwQnor1MZFBKp0x"
-consumerSecret="t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV"
-AccessToken="14366551-Fga25zWM1YefkTb2TZYxsrx2LVVSsK0uSpF08sugW"
-AccessTokenSecret="3ap8BZNVoBhE2GaMGLfuvuPF2OrHzM3MhGuPm96p3k6Cz"
+consumerKey="C559PlNyP1pdnRSmndHQRNgCE"
+consumerSecret="elAOfoldt3a4l0tb6M5R9H9oVlQu1HgXG008KyZYacRcmxzana"
+AccessToken="470827815-dT46lvNupNJeqJVN0KZWwo3fuZ7Mx2hGkBvRtZ7s "
+AccessTokenSecret="2Gw5RPKTbk1wNonuW8sSX3nVoDpoQdAWvglGh2U9gwVAT"
 
 #Common for all accounts except the keys
 
 cred <- OAuthFactory$new(consumerKey=consumerKey, consumerSecret=consumerSecret, requestURL='https://api.twitter.com/oauth/request_token', accessURL='https://api.twitter.com/oauth/access_token', authURL='https://api.twitter.com/oauth/authorize')
 
-cred$handshake(cainfo="cacert.pem") # it will take you to browser: authorise, copy key and paste in R Studio at Console. Once it stores, it move to R prompt
+cred$handshake(cainfo="cacert.pem")
+# it will take you to browser: authorise, copy key and paste in R Studio at Console. Once it stores, it move to R prompt
 save(cred, file="twitter authentication.Rdata") # store this to avoid asking again
 #Load saved authentication cert
 load("twitter authentication.Rdata")
