@@ -12,6 +12,7 @@ summary(inputData)
 sapply(inputData, sd)
 str(inputData)
 data= inputData  # make a copy for futher analysis
+require(caTools)
 
 data$rank = factor(data$rank)
 data$admit = factor(data$admit)
@@ -20,7 +21,7 @@ str(data)
 ## to make sure there are not 0 cells
 table(data$rank, data$admit)
 xtabs(~admit + rank, data = data)
-
+xtabs(~gear+cyl+am+vs,data=mtcars)
 #create Logistic Model
 mylogit <- glm(admit ~ gre + gpa + rank, data = data, family = "binomial")
 
@@ -62,7 +63,23 @@ newdata1  #b=not admitted to institute
 #Parition the data into train and test
 
 
+data(mtcars)
 
+## 75% of the sample size
+smp_size <- floor(0.75 * nrow(mtcars))
+
+## set the seed to make your partition reproducible
+set.seed(123)
+train_ind <- sample(seq_len(nrow(mtcars)), size = smp_size)
+
+train <- mtcars[train_ind, ]
+test <- mtcars[-train_ind, ]
+nrow(mtcars)
+
+train
+dim(train)
+dim(test)
+dim(mtcars)
 library(caret)
 Index <- createDataPartition(y=data$admit, p=0.70, list=FALSE)
 head(Index)
